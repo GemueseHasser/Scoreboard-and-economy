@@ -57,7 +57,7 @@ public final class PvpHandler {
     /**
      * Lädt die persönlichen Daten des Spielers.
      */
-    public void loadPersonalData() {
+    private void loadPersonalData() {
         this.deaths = this.cfg.getInt(this.basicPath + "Deaths");
         this.kills = this.cfg.getInt(this.basicPath + "Kills");
     }
