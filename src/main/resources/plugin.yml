@@ -1,0 +1,9 @@
+name: '${project.name}'
+description: '${project.description}'
+version: '${project.version}'
+load: 'POSTWORLD'
+author: 'Jonas0206'
+authors: ['Jonas0206']
+website: '${project.url}'
+main: '${project.groupId}.${project.artifactId}.${project.name}'
+prefix: '${project.name}'
