@@ -1,9 +1,12 @@
 package de.jonas;
 
 import de.jonas.scoreboard.handler.ConfigurationHandler;
+import de.jonas.scoreboard.listener.DeathListener;
 import de.jonas.scoreboard.task.ScoreboardUpdatingTask;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Scoreboard extends JavaPlugin {
@@ -29,6 +32,10 @@ public class Scoreboard extends JavaPlugin {
 
         // load configuration-data
         ConfigurationHandler.initialize();
+
+        // register listener
+        final PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new DeathListener(), this);
 
         // schedule periodic scoreboard updating
         new ScoreboardUpdatingTask().runTaskTimer(

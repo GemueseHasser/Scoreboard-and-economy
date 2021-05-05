@@ -2,8 +2,13 @@
 ########## Scoreboard and Economy-System ##############
 #######################################################
 Config:
+  # the update-period from the scoreboard in seconds #
   ScoreboardUpdatePeriodInSeconds: 1
+
+  # the title from the scoreboard #
   Title: '&6&lScoreboard'
+
+  # the lines from the scoreboard #
   Scoreboard:
     - '&1'
     - '&aKontostand:'
