@@ -6,6 +6,7 @@ import de.jonas.scoreboard.command.economy.Pay;
 import de.jonas.scoreboard.command.pvp.Pvp;
 import de.jonas.scoreboard.handler.ConfigurationHandler;
 import de.jonas.scoreboard.listener.DeathListener;
+import de.jonas.scoreboard.listener.SneakListener;
 import de.jonas.scoreboard.task.ScoreboardUpdatingTask;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -37,19 +38,27 @@ public class Scoreboard extends JavaPlugin {
         // initialize
         this.initialize();
 
+        // register listener
+        final PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new DeathListener(), this);
+        pm.registerEvents(new SneakListener(), this);
+
+        // register commands
         getCommand("economy").setExecutor(new Economy());
         getCommand("money").setExecutor(new Money());
         getCommand("pay").setExecutor(new Pay());
         getCommand("pvp").setExecutor(new Pvp());
 
-        // register listener
-        final PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new DeathListener(), this);
+        getLogger().info(
+            "Das Plugin wurde erfolgreich aktiviert."
+        );
     }
 
     @Override
     public void onDisable() {
-
+        getLogger().info(
+            "Das Plugin wurde deaktiviert."
+        );
     }
 
     public void initialize() {
