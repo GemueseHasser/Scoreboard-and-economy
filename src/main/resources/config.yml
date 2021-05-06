@@ -2,6 +2,12 @@
 ########## Scoreboard and Economy-System ##############
 #######################################################
 Config:
+  # the currency from the economy-system #
+  Currency: '$'
+
+  # the state if the scoreboard should update periodic #
+  SchedulePeriodicScoreboardUpdating: true
+
   # the update-period from the scoreboard in seconds #
   ScoreboardUpdatePeriodInSeconds: 1
 

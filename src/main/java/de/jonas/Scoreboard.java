@@ -1,5 +1,9 @@
 package de.jonas;
 
+import de.jonas.scoreboard.command.economy.Economy;
+import de.jonas.scoreboard.command.economy.Money;
+import de.jonas.scoreboard.command.economy.Pay;
+import de.jonas.scoreboard.command.pvp.Pvp;
 import de.jonas.scoreboard.handler.ConfigurationHandler;
 import de.jonas.scoreboard.listener.DeathListener;
 import de.jonas.scoreboard.task.ScoreboardUpdatingTask;
@@ -28,14 +32,33 @@ public class Scoreboard extends JavaPlugin {
         prefix = getGeneratedPrefix();
 
         // load configuration-file
-        loadConfig();
+        this.loadConfig();
 
-        // load configuration-data
-        ConfigurationHandler.initialize();
+        // initialize
+        this.initialize();
+
+        getCommand("economy").setExecutor(new Economy());
+        getCommand("money").setExecutor(new Money());
+        getCommand("pay").setExecutor(new Pay());
+        getCommand("pvp").setExecutor(new Pvp());
 
         // register listener
         final PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new DeathListener(), this);
+    }
+
+    @Override
+    public void onDisable() {
+
+    }
+
+    public void initialize() {
+        // load configuration-data
+        ConfigurationHandler.initialize();
+
+        if (!ConfigurationHandler.isShouldUpdate()) {
+            return;
+        }
 
         // schedule periodic scoreboard updating
         new ScoreboardUpdatingTask().runTaskTimer(
@@ -43,11 +66,6 @@ public class Scoreboard extends JavaPlugin {
             20,
             ConfigurationHandler.getUpdatePeriod()
         );
-    }
-
-    @Override
-    public void onDisable() {
-
     }
 
     private void loadConfig() {
@@ -58,7 +76,8 @@ public class Scoreboard extends JavaPlugin {
     private String getGeneratedPrefix() {
         return ChatColor.DARK_GRAY.toString() + ChatColor.BOLD + "["
             + ChatColor.GOLD + "Scoreboard"
-            + ChatColor.DARK_GRAY.toString() + ChatColor.BOLD + "]";
+            + ChatColor.DARK_GRAY.toString() + ChatColor.BOLD + "]"
+            + ChatColor.GRAY + " ";
     }
 
 }

@@ -7,3 +7,19 @@ authors: ['Jonas0206']
 website: '${project.url}'
 main: '${project.groupId}.${project.artifactId}.${project.name}'
 prefix: '${project.name}'
+
+commands:
+  economy:
+    description: 'Editiert die Ökonomie eines bestimmten Spielers.'
+    usage: '</command> <add|remove|set> <player> <amount>'
+    aliases:
+      - 'eco'
+  money:
+    description: 'Zeigt den eigenen Kontostand an, oder den eines anderen.'
+    usage: '</command> | </command> <player>'
+  pay:
+    description: 'Bezahlt einem Spieler einen bestimmten Betrag.'
+    usage: '</command> <player> <amount>'
+  pvp:
+    description: 'Zeigt die eigenen PVP-Statistiken an, oder die eines anderen.'
+    usage: '</command> | </command> <player>'
