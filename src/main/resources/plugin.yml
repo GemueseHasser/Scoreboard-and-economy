@@ -23,3 +23,6 @@ commands:
   pvp:
     description: 'Zeigt die eigenen PVP-Statistiken an, oder die eines anderen.'
     usage: '</command> | </command> <player>'
+  sbrl:
+    description: 'Lädt das Scoreboard mitsamt Config neu.'
+    usage: '</command>'

@@ -1,5 +1,6 @@
 package de.jonas;
 
+import de.jonas.scoreboard.command.Reload;
 import de.jonas.scoreboard.command.economy.Economy;
 import de.jonas.scoreboard.command.economy.Money;
 import de.jonas.scoreboard.command.economy.Pay;
@@ -24,6 +25,8 @@ public class Scoreboard extends JavaPlugin {
     @Getter
     private static String prefix;
 
+    private ScoreboardUpdatingTask scoreboardUpdatingTask;
+
     @Override
     public void onEnable() {
         // declare instance
@@ -34,6 +37,9 @@ public class Scoreboard extends JavaPlugin {
 
         // load configuration-file
         this.loadConfig();
+
+        // initialize task
+        this.scoreboardUpdatingTask = new ScoreboardUpdatingTask();
 
         // initialize
         this.initialize();
@@ -48,6 +54,7 @@ public class Scoreboard extends JavaPlugin {
         getCommand("money").setExecutor(new Money());
         getCommand("pay").setExecutor(new Pay());
         getCommand("pvp").setExecutor(new Pvp());
+        getCommand("sbrl").setExecutor(new Reload());
 
         getLogger().info(
             "Das Plugin wurde erfolgreich aktiviert."
@@ -65,15 +72,31 @@ public class Scoreboard extends JavaPlugin {
         // load configuration-data
         ConfigurationHandler.initialize();
 
+        // get task-id from scoreboard-updating-task
+        final int taskId = this.scoreboardUpdatingTask.getTaskId();
+
+        // check if task is already running
+        if (Bukkit.getScheduler().isCurrentlyRunning(taskId)) {
+
+            // check if periodic updating is enabled in the config
+            if (!ConfigurationHandler.isShouldUpdate()) {
+                Bukkit.getScheduler().cancelTask(taskId);
+                return;
+            }
+
+            return;
+        }
+
+        // check if periodic updating is enabled in the config
         if (!ConfigurationHandler.isShouldUpdate()) {
             return;
         }
 
         // schedule periodic scoreboard updating
-        new ScoreboardUpdatingTask().runTaskTimer(
+        this.scoreboardUpdatingTask.runTaskTimer(
             this,
             20,
-            ConfigurationHandler.getUpdatePeriod()
+            ConfigurationHandler.getUpdatePeriod() * 20L
         );
     }
 
@@ -85,7 +108,7 @@ public class Scoreboard extends JavaPlugin {
     private String getGeneratedPrefix() {
         return ChatColor.DARK_GRAY.toString() + ChatColor.BOLD + "["
             + ChatColor.GOLD + "Scoreboard"
-            + ChatColor.DARK_GRAY.toString() + ChatColor.BOLD + "]"
+            + ChatColor.DARK_GRAY + ChatColor.BOLD + "]"
             + ChatColor.GRAY + " ";
     }
 
