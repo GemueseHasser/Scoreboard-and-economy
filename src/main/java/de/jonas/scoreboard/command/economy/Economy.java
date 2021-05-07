@@ -11,7 +11,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Es wird der Befehl implementiert, womit man die Ökonomie eines bestimmten Spielers editieren kann.
+ */
 public final class Economy implements CommandExecutor {
+    //<editor-fold desc="implementation">
     @Override
     public boolean onCommand(
         @NotNull final CommandSender sender,
@@ -23,7 +27,7 @@ public final class Economy implements CommandExecutor {
 
         final String usage = "/economy <add|remove|set> <player> <amount>";
 
-        if (!commandCheck.check(
+        if (commandCheck.isNotCorrect(
             3,
             3,
             "economy.admin",
@@ -85,4 +89,5 @@ public final class Economy implements CommandExecutor {
         }
         return true;
     }
+    //</editor-fold>
 }

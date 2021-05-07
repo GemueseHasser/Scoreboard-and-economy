@@ -11,7 +11,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Es wird der Befehl implementiert, womit man einem bestimmten Spieler einen bestimmten Betrag an Währung überweisen
+ * kann.
+ */
 public final class Pay implements CommandExecutor {
+    //<editor-fold desc="implementation">
     @Override
     public boolean onCommand(
         @NotNull final CommandSender sender,
@@ -21,7 +26,7 @@ public final class Pay implements CommandExecutor {
     ) {
         final CommandCheck commandCheck = new CommandCheck(sender, args);
 
-        if (!commandCheck.check(
+        if (commandCheck.isNotCorrect(
             2,
             2,
             "economy.pay",
@@ -62,4 +67,5 @@ public final class Pay implements CommandExecutor {
             + " hat dir einen Betrag von " + amount + ConfigurationHandler.getCurrency() + " überwiesen!");
         return true;
     }
+    //</editor-fold>
 }

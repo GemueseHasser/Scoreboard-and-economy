@@ -7,8 +7,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Mithilfe des {@link DeathListener} werden die Tode und Kills eines Spielers gehandhabt und verarbeitet.
+ */
 public final class DeathListener implements Listener {
 
+    //<editor-fold desc="listener: onDeath">
     @EventHandler
     public void onDeath(@NotNull final PlayerDeathEvent e) {
         final Player player = e.getEntity();
@@ -25,5 +29,6 @@ public final class DeathListener implements Listener {
         final PvpHandler pvpHandlerKiller = new PvpHandler(killer);
         pvpHandlerKiller.incrementKills();
     }
+    //</editor-fold>
 
 }

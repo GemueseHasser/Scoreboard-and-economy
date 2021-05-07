@@ -7,7 +7,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Es wird der Befehl implementiert, womit man das gesamte Scoreboard-System mitsamt Konfigurations-Datei neu laden
+ * kann.
+ */
 public final class Reload implements CommandExecutor {
+    //<editor-fold desc="implementation">
     @Override
     public boolean onCommand(
         @NotNull final CommandSender sender,
@@ -17,7 +22,7 @@ public final class Reload implements CommandExecutor {
     ) {
         final CommandCheck commandCheck = new CommandCheck(sender, args);
 
-        if (!commandCheck.check(
+        if (commandCheck.isNotCorrect(
             0,
             0,
             "scoreboard.reload",
@@ -33,4 +38,5 @@ public final class Reload implements CommandExecutor {
         );
         return true;
     }
+    //</editor-fold>
 }

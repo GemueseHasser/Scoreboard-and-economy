@@ -10,7 +10,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Es wird der Befehl implementiert, womit man sich die PVP-Daten eines bestimmten Spielers anzeigen lassen kann.
+ */
 public final class Pvp implements CommandExecutor {
+    //<editor-fold desc="implementation">
     @Override
     public boolean onCommand(
         @NotNull final CommandSender sender,
@@ -20,7 +24,7 @@ public final class Pvp implements CommandExecutor {
     ) {
         final CommandCheck commandCheck = new CommandCheck(sender, args);
 
-        if (!commandCheck.check(
+        if (commandCheck.isNotCorrect(
             0,
             1,
             "scoreboard.pvp",
@@ -58,4 +62,5 @@ public final class Pvp implements CommandExecutor {
         player.sendMessage(Scoreboard.getPrefix() + "Kills: " + pvpHandler.getKills());
         return true;
     }
+    //</editor-fold>
 }

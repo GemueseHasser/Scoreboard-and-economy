@@ -11,7 +11,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Es wird der Befehl implementiert, womit man sich den Kontostand von sich selbst oder jemandem anderen (vorausgesetzt
+ * man hat genügend Rechte) anzeigen lassen kann.
+ */
 public final class Money implements CommandExecutor {
+    //<editor-fold desc="implementation">
     @Override
     public boolean onCommand(
         @NotNull final CommandSender sender,
@@ -21,7 +26,7 @@ public final class Money implements CommandExecutor {
     ) {
         final CommandCheck commandCheck = new CommandCheck(sender, args);
 
-        if (!commandCheck.check(
+        if (commandCheck.isNotCorrect(
             0,
             1,
             "economy.money",
@@ -62,4 +67,5 @@ public final class Money implements CommandExecutor {
         );
         return true;
     }
+    //</editor-fold>
 }

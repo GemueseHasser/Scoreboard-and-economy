@@ -7,8 +7,20 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Mithilfe des {@link ScoreboardHandler} lässt sich das Scoreboard für einen bestimmten Spieler setzen. Es werden die
+ * Platzhalter '%money', '%kills%' und '%deaths%' genutzt, um die Ökonomie, die Anzahl an Kills und die Anzahl an Toden
+ * zu übergeben.
+ */
 public final class ScoreboardHandler {
 
+    /**
+     * Setzt das in der Konfigurations-datei voreingestellte Scoreboard für einen bestimmten Spieler. Es werden die
+     * Platzhalter '%money', '%kills%' und '%deaths%' genutzt, um die Ökonomie, die Anzahl an Kills und die Anzahl an
+     * Toden zu übergeben.
+     *
+     * @param player Der Spieler, für den das Scoreboard gesetzt werden soll.
+     */
     public static void setScoreboard(@NotNull final Player player) {
         final Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 
