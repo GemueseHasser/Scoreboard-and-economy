@@ -40,7 +40,7 @@ public final class ConfigurationHandler {
      */
     public static void initialize() {
         currency = Scoreboard.getInstance().getConfig().getString("Config.Currency");
-        economyStart = Scoreboard.getInstance().getConfig().getInt("Config.economyStart");
+        economyStart = Scoreboard.getInstance().getConfig().getInt("Config.EconomyStart");
         shouldUpdate = Scoreboard.getInstance().getConfig().getBoolean("Config.SchedulePeriodicScoreboardUpdating");
         updatePeriod = Scoreboard.getInstance().getConfig().getInt("Config.ScoreboardUpdatePeriodInSeconds");
         title = Scoreboard.getInstance().getConfig().getString("Config.Title");

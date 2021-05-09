@@ -6,7 +6,7 @@ Config:
   Currency: '$'
 
   # economy start value #
-  economyStart: 1000
+  EconomyStart: 1000
 
   # the state if the scoreboard should update periodic #
   SchedulePeriodicScoreboardUpdating: true
@@ -27,6 +27,6 @@ Config:
     - '&8&l> &8%kills%'
     - '&3'
     - '&aTode:'
-    - '&8&l> &8%deaths%'
+    - '&8&l> &7&8%deaths%'
     - '&4'
     - '&6IP: &5ip.test.net'
