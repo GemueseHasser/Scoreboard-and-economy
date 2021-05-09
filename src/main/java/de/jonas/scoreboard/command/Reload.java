@@ -34,7 +34,7 @@ public final class Reload implements CommandExecutor {
         Scoreboard.getInstance().initialize();
 
         commandCheck.getPlayer().sendMessage(
-            Scoreboard.getPrefix() + "Das Scoreboard mitsamt Config wurde neu geladen!"
+            Scoreboard.getPrefix() + "Das Scoreboard wurde mitsamt Config neu geladen!"
         );
         return true;
     }

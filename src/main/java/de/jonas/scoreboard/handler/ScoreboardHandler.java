@@ -41,7 +41,7 @@ public final class ScoreboardHandler {
             objective.getScore(
                 ChatColor.translateAlternateColorCodes(
                     '&',
-                    "&" + i + ConfigurationHandler
+                    ConfigurationHandler
                         .getScoreboard()
                         .get(i)
                         .replace("%money%", economyHandler.getEconomy() + ConfigurationHandler.getCurrency())
