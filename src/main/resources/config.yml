@@ -5,6 +5,9 @@ Config:
   # the currency from the economy-system #
   Currency: '$'
 
+  # economy start value #
+  economyStart: 1000
+
   # the state if the scoreboard should update periodic #
   SchedulePeriodicScoreboardUpdating: true
 

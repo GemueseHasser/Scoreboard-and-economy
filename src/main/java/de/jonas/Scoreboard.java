@@ -7,6 +7,7 @@ import de.jonas.scoreboard.command.economy.Pay;
 import de.jonas.scoreboard.command.pvp.Pvp;
 import de.jonas.scoreboard.handler.ConfigurationHandler;
 import de.jonas.scoreboard.listener.DeathListener;
+import de.jonas.scoreboard.listener.JoinListener;
 import de.jonas.scoreboard.listener.SneakListener;
 import de.jonas.scoreboard.task.ScoreboardUpdatingTask;
 import lombok.Getter;
@@ -69,6 +70,7 @@ public class Scoreboard extends JavaPlugin {
         final PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new DeathListener(), this);
         pm.registerEvents(new SneakListener(), this);
+        pm.registerEvents(new JoinListener(), this);
 
         // register commands
         getCommand("economy").setExecutor(new Economy());
@@ -102,22 +104,9 @@ public class Scoreboard extends JavaPlugin {
         // load configuration-data
         ConfigurationHandler.initialize();
 
-        // get task-id from scoreboard-updating-task
-        final int taskId = this.scoreboardUpdatingTask.getTaskId();
+        // cancel all tasks from this plugin
+        Bukkit.getScheduler().cancelTasks(this);
 
-        // check if task is already running
-        if (Bukkit.getScheduler().isCurrentlyRunning(taskId)) {
-
-            // check if periodic updating is enabled in the config
-            if (!ConfigurationHandler.isShouldUpdate()) {
-                Bukkit.getScheduler().cancelTask(taskId);
-                return;
-            }
-
-            return;
-        }
-
-        // check if periodic updating is enabled in the config
         if (!ConfigurationHandler.isShouldUpdate()) {
             return;
         }

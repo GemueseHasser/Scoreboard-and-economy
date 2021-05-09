@@ -1,6 +1,7 @@
 package de.jonas.scoreboard.handler;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -26,20 +27,27 @@ public final class ScoreboardHandler {
 
         final Objective objective = scoreboard.registerNewObjective("abcde", "abcde");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective.setDisplayName(ConfigurationHandler.getTitle());
+        objective.setDisplayName(
+            ChatColor.translateAlternateColorCodes(
+                '&',
+                ConfigurationHandler.getTitle()
+            )
+        );
 
         final EconomyHandler economyHandler = new EconomyHandler(player);
         final PvpHandler pvpHandler = new PvpHandler(player);
 
-        for (int i = ConfigurationHandler.getScoreboard().size(); i > 0; i--) {
+        for (int i = 0; i < ConfigurationHandler.getScoreboard().size(); i++) {
             objective.getScore(
-                ConfigurationHandler
-                    .getScoreboard()
-                    .get(i)
-                    .replace("%money%", economyHandler.getEconomy() + "")
-                    .replace("%kills%", pvpHandler.getKills() + "")
-                    .replace("%deaths%", pvpHandler.getDeaths() + "")
-            ).setScore(i);
+                ChatColor.translateAlternateColorCodes(
+                    '&',
+                    ConfigurationHandler
+                        .getScoreboard()
+                        .get(i)
+                        .replace("%money%", economyHandler.getEconomy() + ConfigurationHandler.getCurrency())
+                        .replace("%kills%", pvpHandler.getKills() + ChatColor.WHITE.toString())
+                        .replace("%deaths%", pvpHandler.getDeaths() + ChatColor.GRAY.toString() + ChatColor.WHITE)
+                )).setScore(ConfigurationHandler.getScoreboard().size() - i);
         }
 
         player.setScoreboard(scoreboard);

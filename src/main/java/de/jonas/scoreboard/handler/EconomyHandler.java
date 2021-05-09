@@ -64,4 +64,18 @@ public final class EconomyHandler {
     }
     //</editor-fold>
 
+    /**
+     * Prüft, ob für den Spieler, für den dieser {@link EconomyHandler} initialisiert wurde schon eine Ökonomie
+     * vorhanden ist. Wenn dies nicht der Fall sein sollte, wird die Ökonomie für den Spieler angelegt.
+     */
+    @SneakyThrows
+    public void check() {
+        if (this.cfg.get(this.path) != null) {
+            return;
+        }
+
+        this.cfg.set(this.path, ConfigurationHandler.getEconomyStart());
+        this.cfg.save(this.file);
+    }
+
 }

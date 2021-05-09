@@ -16,6 +16,9 @@ public final class ConfigurationHandler {
     /** Die Währung, welche das Ökonomie-System haben soll. */
     @Getter
     private static String currency;
+    /** Der Betrag, den ein Spieler bekommt, sobald er das Netzwerk zum ersten Mal betritt. */
+    @Getter
+    private static int economyStart;
     /** Der Zustand, ob das Scoreboard konstant über einen Task aktualisiert werden soll. */
     @Getter
     private static boolean shouldUpdate;
@@ -37,6 +40,7 @@ public final class ConfigurationHandler {
      */
     public static void initialize() {
         currency = Scoreboard.getInstance().getConfig().getString("Config.Currency");
+        economyStart = Scoreboard.getInstance().getConfig().getInt("Config.economyStart");
         shouldUpdate = Scoreboard.getInstance().getConfig().getBoolean("Config.SchedulePeriodicScoreboardUpdating");
         updatePeriod = Scoreboard.getInstance().getConfig().getInt("Config.ScoreboardUpdatePeriodInSeconds");
         title = Scoreboard.getInstance().getConfig().getString("Config.Title");
