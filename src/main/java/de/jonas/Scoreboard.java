@@ -93,6 +93,9 @@ public class Scoreboard extends JavaPlugin {
      * Starten des Plugins aufgerufen, aber auch beim aktualisieren der Konfigurations-Datei.
      */
     public void initialize() {
+        // reload config
+        this.reloadConfig();
+
         // load configuration-data
         ConfigurationHandler.initialize();
 
