@@ -43,11 +43,6 @@ public class Scoreboard extends JavaPlugin {
     private static String prefix;
     //</editor-fold>
 
-    //<editor-fold desc="LOCAL FIELDS">
-    /** Der {@link ScoreboardUpdatingTask}, womit das Scoreboard eines jeden Spielers konstant aktualisiert wird. */
-    private ScoreboardUpdatingTask scoreboardUpdatingTask;
-    //</editor-fold>
-
     //<editor-fold desc="setup and startup">
     @Override
     public void onEnable() {
@@ -59,9 +54,6 @@ public class Scoreboard extends JavaPlugin {
 
         // load configuration-file
         this.loadConfig();
-
-        // initialize task
-        this.scoreboardUpdatingTask = new ScoreboardUpdatingTask();
 
         // initialize
         this.initialize();
@@ -112,7 +104,7 @@ public class Scoreboard extends JavaPlugin {
         }
 
         // schedule periodic scoreboard updating
-        this.scoreboardUpdatingTask.runTaskTimer(
+        new ScoreboardUpdatingTask().runTaskTimer(
             this,
             20,
             ConfigurationHandler.getUpdatePeriod() * 20L
