@@ -78,8 +78,7 @@ public final class Economy implements CommandExecutor {
                 economyHandler.setEconomy(amount);
                 player.sendMessage(
                     Scoreboard.getPrefix() + "Der Kontostand von " + target.getName() + " wurde auf " + amount
-                        + ConfigurationHandler.getCurrency() + " gesetzt. "
-                        + "(aktuell bei " + economyHandler.getEconomy() + ConfigurationHandler.getCurrency() + ")"
+                        + ConfigurationHandler.getCurrency() + " gesetzt."
                 );
                 break;
 
