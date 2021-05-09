@@ -41,12 +41,12 @@ public final class ScoreboardHandler {
             objective.getScore(
                 ChatColor.translateAlternateColorCodes(
                     '&',
-                    ConfigurationHandler
+                    "&" + i + ConfigurationHandler
                         .getScoreboard()
                         .get(i)
                         .replace("%money%", economyHandler.getEconomy() + ConfigurationHandler.getCurrency())
-                        .replace("%kills%", pvpHandler.getKills() + ChatColor.WHITE.toString())
-                        .replace("%deaths%", pvpHandler.getDeaths() + ChatColor.GRAY.toString() + ChatColor.WHITE)
+                        .replace("%kills%", pvpHandler.getKills() + "")
+                        .replace("%deaths%", pvpHandler.getDeaths() + "")
                 )).setScore(ConfigurationHandler.getScoreboard().size() - i);
         }
 
